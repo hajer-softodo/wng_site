@@ -1,0 +1,141 @@
+##
+##
+## Configuration de "page" (metas + favicon)
+##
+##
+page {  
+
+  meta {
+    copyright = WNG SA © 2020
+    robots =
+    author = WNG agence digitale
+    
+    description = {$meta.description}
+    description.override.field = description
+    
+    keywords = {$meta.keywords}
+    keywords.override.field = keywords
+  }
+
+}
+
+
+##
+##
+## Configuration de l'en-tête supplémentaire
+##
+##
+  # En-têtes supplémentaires
+  page.headerData {
+    # Construction du titre de page
+    1 = COA
+    1 {
+      wrap = <title> | </title>
+      
+      # Titre du site
+      10 = TEXT
+      10.value = {$title}
+      
+      # Nom de la page
+      20 = TEXT
+      20 {
+        exlude = 15
+        data = page:title
+        htmlSpecialChars = 1
+        noTrimWrap = | - ||
+        
+        if {
+          value = 1
+          equals.data = TSFE:id
+          negate = 1
+        }
+      }
+    
+     # Champ sous-titre de la page
+      30 = TEXT
+      30 {
+        data = page:subtitle
+        if.isTrue.data = page:subtitle
+        # // levelfield : -1, subtitle, slide
+        htmlSpecialChars = 1
+        noTrimWrap = | - ||
+      }
+      
+      # Fin du site
+      40 = TEXT
+      40.value = {$title.keywords}
+      40.override.field = seo_title
+      40.noTrimWrap = | - ||
+    }
+    
+      
+  10 = TEXT
+  10.value = <link rel="shortcut icon" type="image/x-icon" href="fileadmin/templates/{$domainfile}/img/Picto_TYPO3_frontend.png" /> 
+  
+  # Lien vers l'accueil
+  #
+  20 = COA
+  20 {
+    10 = TEXT
+    10.wrap = <link rel="home" href=" | " />
+    10.typolink {
+      parameter = 2
+      returnLast = url
+    }
+  }
+  
+  
+  # Metas réseaux sociaux
+  #
+  30 = COA
+  30 {
+    
+    # Google+
+    10 = TEXT
+    10 {
+      
+      value = {$lib.wng.fe.socials.googleplus.profil_url}
+      wrap = <link rel="author" href=" | " />
+      
+      if {
+        isEmpty.value = {$lib.wng.fe.socials.googleplus.profil_url}
+        negate = 1
+      }
+    }
+  }
+  30 >
+  
+  # Touch icons
+  #
+  40 = COA
+  40 {
+    
+    10 = TEXT
+    10.value (
+      <link rel="apple-touch-icon-precomposed" href="fileadmin/templates/{$domainfile}/img/icons/apple-touch-icon-precomposed.png">
+    )    
+  }  
+}
+
+##
+##
+## Universal Analytics
+##
+##         
+       
+[globalVar = LIT:1 = {$UA-active}]
+page.headerData.19 = TEXT
+page.headerData.19.value (
+<script type="text/javascript">
+  tarteaucitron.user.gajsUa = '{$UA}';
+  tarteaucitron.user.gajsMore = function () { /* add here your optionnal _ga.push() */ };
+  (tarteaucitron.job = tarteaucitron.job || []).push('gajs');
+</script>
+)
+[END]
+
+
+[siteLanguage("languageId") == "1"]
+page.headerData.1.20 >
+[global]
+

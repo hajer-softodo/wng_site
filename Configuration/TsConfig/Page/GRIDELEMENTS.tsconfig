@@ -1,0 +1,269 @@
+# Carousel Container
+
+tx_gridelements.setup.uebb_bootstrap_carousel_container {
+  title = Carousel Container
+  description = Un élément qui contient plusieurs Carousel Element
+  flexformDS = FILE:EXT:wng_site/Resources/Private/Gridelements/bootstrap3_carousel_container.xml
+
+  config {
+    colCount = 1
+    rowCount = 1
+
+    rows {
+      1 {
+        columns {
+          1 {
+            name = Carousel Container
+            colPos = 0
+            allowed = gridelements_pi1
+          }
+        }
+      }
+    }
+  }
+}
+
+# Carousel Element
+tx_gridelements.setup.uebb_bootstrap_carousel_item {
+  title = Carousel Element
+  description = Un élément du Carousel Container
+
+  config {
+    colCount = 4
+    rowCount = 1
+
+    rows {
+      1 {
+        columns {
+          1 {
+            name = Image (max. 1)
+            colPos = 0
+            allowed = textmedia
+          }
+          2 {
+            name = Contenu (texte uniquement)
+            colspan = 3
+            colPos = 1
+            allowed = header,textmedia
+          }
+        }
+      }
+    }
+  }
+}
+# Carousel END
+
+# 2 cols
+
+tx_gridelements.setup.2cols {
+
+  title = 2 colonnes
+  description = Elément séparateur de 2 colonnes - 50/50
+
+  config {
+
+    colCount = 2
+    rowCount = 1
+    rows {
+      1 {
+        columns {
+          1 {
+            name = Colonne 1
+            colPos = 1
+          }
+          2 {
+            name = Colonne 2
+            colPos = 2
+          }    
+        }
+      }
+    }
+
+  }
+
+}
+
+# 2 cols END
+
+# 3 cols
+
+tx_gridelements.setup.3cols {
+
+  title = 3 colonnes
+  description = Elément séparateur de 3 colonnes - 33/33/33
+
+  config {
+
+    colCount = 3
+    rowCount = 1
+    rows {
+      1 {
+        columns {
+          1 {
+            name = Colonne 1
+            colPos = 1
+          }
+          2 {
+            name = Colonne 2
+            colPos = 2
+          }    
+          
+          3 {
+            name = Colonne 3
+            colPos = 3
+          }    
+        }
+      }
+    }
+
+  }
+
+}
+
+# 3 cols END
+
+# 4 cols
+
+tx_gridelements.setup.4cols {
+
+  title = 4 colonnes
+  description = Elément séparateur de 4 colonnes - 25/25/25/25
+
+  config {
+
+    colCount = 4
+    rowCount = 1
+    rows {
+      1 {
+        columns {
+          1 {
+          name = Colonne 1
+          colPos = 1
+          }
+          2 {
+            name = Colonne 2
+            colPos = 2
+          }
+          3 {
+            name = Colonne 3
+            colPos = 3
+          }
+          4 {
+            name = Colonne 4
+            colPos = 4
+          }     
+        }
+      }
+    }
+
+  }
+
+}
+
+# 4 cols END
+
+# Accordion
+tx_gridelements.setup.accordion {
+  title = Accordéon
+  description = Conteneur pour l'accordéon
+
+  config {
+    colCount = 1
+    rowCount = 1
+    rows {
+      1 {
+        columns {
+          1 {
+            name = Contenu de l'accordéon
+            colPos = 1
+          }
+        }
+      }
+    }
+  }
+}
+# Accordion END
+
+# Accordion element
+tx_gridelements.setup.accordion_element {
+
+  title = Accordéon élément
+  description = Elément pour l'accordéon
+
+  config {
+    colCount = 1
+    rowCount = 2
+    rows {
+      1 {
+        columns {
+          1 {
+            name = Titre de l'accordéon
+            colPos = 1
+          }
+        }
+      }
+      2 {
+        columns {
+          1 {
+            name = Contenu de l'élément accordéon
+            colPos = 2
+          }
+        }
+      }
+    }
+  }
+}
+
+# Accordion element END
+
+# Tabs Container
+tx_gridelements.setup.uebb_bootstrap_tabs_container {
+  title = Tabs Container
+  description = Conteneur pour plusieurs Tabs
+  flexformDS = FILE:EXT:wng_site/Resources/Private/Gridelements/bootstrap3_tabs_container.xml
+
+  config {
+    colCount = 1
+    rowCount = 1
+
+    rows {
+      1 {
+        columns {
+          1 {
+            name = Tab Container Element
+            colPos = 0
+            allowed = gridelements_pi1
+          }
+        }
+      }
+    }
+  }
+}
+
+# Tabs Container END
+
+# Tab Element
+tx_gridelements.setup.uebb_bootstrap_tabs_tab {
+  title = Tab
+  description = Elément Tab pour le Tab Container
+
+  config {
+    colCount = 1
+    rowCount = 1
+
+    rows {
+      1 {
+        columns {
+          1 {
+            name = Tab Element
+            colPos = 0
+          }
+        }
+      }
+    }
+  }
+}
+# Tab Element END
+
+# Tab Gridelements
+

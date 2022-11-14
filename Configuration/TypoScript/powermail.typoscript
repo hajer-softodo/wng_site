@@ -1,0 +1,25 @@
+page.includeJSFooterlibs.powermailJQuery >
+
+plugin.tx_jhcaptcha.settings.reCaptcha {
+    version =
+    v3 {
+            siteKey = 6LeHYKIUAAAAAAfCvtB7dkuIJdpxmDWmvC6bPLCK
+            secretKey = 6LeHYKIUAAAAAEk8Dd8P6IyyrkZOPFG2wWUnr0RD
+      		lang = fr
+    }
+}
+  
+  plugin.tx_powermail.view {
+
+
+   templateRootPaths.1 = EXT:wng_site/Resources/Private/Powermail/Templates/
+   layoutRootPaths.1 = EXT:wng_site/Resources/Private/Powermail/Layouts/
+
+   partialRootPath >
+    partialRootPaths {
+        1 = EXT:wng_site/Resources/Private/Powermail/Partials
+        2 = EXT:wng_site/Resources/Private/Jh_captcha/Powermail/Partials
+    }
+}
+
+plugin.tx_powermail.settings.setup.spamshield._enable = 1

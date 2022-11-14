@@ -1,0 +1,86 @@
+######################
+###### VARIABLES #####
+######################
+
+# cat=wng; type=string; label= Meta mots clé: Mots clé du site
+meta.keywords =    
+ 
+# cat=wng; type=string; label= Meta description: Description du site
+meta.description =
+                      
+# cat=wng; type=string; label= UA: ID de Universal Analytics
+UA = UA-XXXXX-Y
+
+# cat=wng; type=boolean; label= UA-active: Activation de Universal Analytics
+UA-active = 1
+                
+# cat=wng; type=string; label= Titre: Titre du site
+title = TYPO3 11 LTS - Standardisation WnG
+
+# cat=wng; type=string; label= Complément du titre: Mots clés qui complètent le title des pages
+title.keywords = CMS - gestionnaire de contenu - site web
+
+# cat=standardisation; type=string; label= Domaine: Nom de domaine du site
+domain = 127.0.0.1/standarisation112
+
+styles.content.textmedia.maxW = 3000
+
+[like(request.getNormalizedParams().getHttpHost(), 't3-10.wnglive.ch')]
+domain = t3-10.wnglive.ch
+[end]
+
+######################
+#### DEPENDENCIES ####
+######################
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:fluid_styled_content/Configuration/TypoScript/constants.typoscript">
+
+
+##############################
+#### FLUID STYLED CONTENT ####
+##############################
+styles {
+    templates {
+        layoutRootPath = EXT:wng_site/Resources/Private/Layouts/ContentElements/
+        partialRootPath = EXT:wng_site/Resources/Private/Partials/ContentElements/
+        templateRootPath = EXT:wng_site/Resources/Private/Templates/ContentElements/
+    }
+}
+
+
+############
+### PAGE ###
+############
+page {
+     fluidtemplate {
+        layoutRootPath = EXT:wng_site/Resources/Private/Layouts/Page/
+        partialRootPath = EXT:wng_site/Resources/Private/Partials/Page/
+        templateRootPath = EXT:wng_site/Resources/Private/Templates/Page/
+    }
+    meta {
+        description =
+        author =
+        keywords =
+        viewport = width=device-width, initial-scale=1
+        robots = index,follow
+        apple-mobile-web-app-capable = no
+        compatible = IE=edge
+    }
+    tracking {
+        google {
+            trackingID =
+            anonymizeIp = 1
+        }
+    }
+}
+
+
+##############
+### CONFIG ###
+##############
+config {
+    no_cache = 0
+    removeDefaultJS = 0
+    admPanel = 1
+    prefixLocalAnchors = all
+    sendCacheHeaders = 1
+}

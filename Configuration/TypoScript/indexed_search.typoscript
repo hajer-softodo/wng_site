@@ -1,0 +1,41 @@
+plugin.tx_indexedsearch {
+
+	settings {
+		# show the rules
+		displayRules = 0
+
+		# show a link to the advanced search
+		displayAdvancedSearchLink = 0
+	}
+	
+	 _LOCAL_LANG {
+          default {
+              search_placeholder = Chercher
+              displayResults.page =
+              displayResults.previous = 
+              displayResults.next = 
+          }
+          fr {
+              search_placeholder = Chercher
+              displayResults.page =
+              displayResults.previous = 
+              displayResults.next = 
+          }
+      }
+
+
+	view {
+		templateRootPaths {
+			0 = EXT:wng_site/Resources/Private/Indexed_search/Templates/
+			10 = EXT:wng_site/Resources/Private/Indexed_search/Templates/
+		}
+		partialRootPaths {
+			0 = EXT:wng_site/Resources/Private/Indexed_search/Partials/
+			10 = EXT:wng_site/Resources/Private/Indexed_search/Partials/
+		}
+		layoutRootPaths {
+			0 = EXT:wng_site/Resources/Private/Indexed_search/Layouts/
+			10 = EXT:wng_site/Resources/Private/Indexed_search/Layouts/
+		}
+	}
+}

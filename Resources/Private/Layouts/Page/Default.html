@@ -1,0 +1,17 @@
+<f:render partial="header" />    
+<div id="content">
+    <div class="container">  
+        <div class="row">
+            <div class="col-md-3">
+                <nav id="sub-navigation">
+                    <f:cObject typoscriptObjectPath="lib.sub_menu" />
+                </nav>
+            </div>
+            <div class="col-md-6">
+                <f:render section="Main" />
+            </div>
+        </div>
+    </div>
+</div><!-- /content -->
+<f:render partial="footer" />
+

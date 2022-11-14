@@ -1,0 +1,12 @@
+	<ul class="nav {data.flexform_display_type} row">
+		<div class="tab-carousel col-sm-12">
+			<f:for each="{data.tx_gridelements_view_children}" as="tab" iteration="tab_iteration">
+				<li class="tab-item">
+					<a href="#tab-content-{tab.uid}" data-toggle="tab" class="{f:if(condition:'{tab_iteration.isFirst}',then:'active')}">{tab.header}</a>
+				</li>
+			</f:for>
+		</div>
+	</ul>
+	<div class="tab-content">
+		<f:format.raw>{data.tx_gridelements_view_columns.0}</f:format.raw>
+	</div>

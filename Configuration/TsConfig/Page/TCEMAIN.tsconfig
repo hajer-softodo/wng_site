@@ -1,0 +1,7 @@
+#
+# TCEMAIN
+#
+TCEMAIN.permissions {
+	groupid = 1
+	group = show, editcontent, edit, delete, new
+}

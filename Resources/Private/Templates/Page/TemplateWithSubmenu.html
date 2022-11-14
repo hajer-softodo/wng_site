@@ -1,0 +1,32 @@
+<f:layout name="home_layout" />
+<f:section name="Main">
+<!--TYPO3SEARCH_begin-->
+    <div class="content-top">
+        <div class="content-img">
+          <f:cObject typoscriptObjectPath="lib.dynamicContent" data="{colPos: '3'}" />
+        </div>  
+    </div>
+    <div id="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-9">
+            <div class="breadcrumb"><f:cObject typoscriptObjectPath="lib.filArianne" /></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 second-nav">
+            <f:cObject typoscriptObjectPath="lib.current_nav" />
+            <f:cObject typoscriptObjectPath="lib.sub_menu" />
+          </div>
+          <div id="main-content" class="col-md-9">
+            <f:cObject typoscriptObjectPath="lib.dynamicContent" data="{colPos: '0'}" />
+          </div>
+          <!--<div class="col-md-3">
+            <f:format.raw>{content_right}</f:format.raw>
+          </div>-->
+        </div>
+      </div>
+    </div><!-- /content -->
+<!--TYPO3SEARCH_end-->  
+</f:section>

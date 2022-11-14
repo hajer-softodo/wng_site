@@ -1,0 +1,151 @@
+lib.current_nav = COA
+lib.current_nav {
+  10 = HMENU
+  10 {
+    special = rootline    
+    special.range = 2|0
+    1 = TMENU
+    1 {
+      NO.linkWrap = <div class="second-nav-title">|</div>
+      NO.doNotLinkIt = 1
+    }
+  }
+}
+lib.sub_menu = COA
+lib.sub_menu {
+  10 = HMENU
+  10{
+        #wrap = <ul class="menu">|</ul>
+        entryLevel = 2
+        1 = TMENU
+        1 {
+            expAll = 1
+            noBlur = 1
+            wrap = <ul>|</ul>
+            target = _top
+            NO {
+                stdWrap.htmlSpecialChars = 1
+                wrapItemAndSub = <li>|</li>
+            }
+            ACT < .NO
+            ACT = 1
+            ACT {
+                wrapItemAndSub = <li class="active">|</li>
+            }
+            IFSUB = 1
+            IFSUB {
+                wrapItemAndSub = <li>|</li>
+                ATagParams = class="dropdown-toggle" data-toggle="dropdown"
+            }
+      
+            CURIFSUB < .IFSUB
+            CURIFSUB {
+                wrapItemAndSub = <li class="active open">|</li>
+                ATagParams = class="dropdown-toggle" data-toggle="dropdown"
+            }
+            
+            ACTIFSUB < .CURIFSUB
+        }
+        2 = TMENU
+        2 {
+            expAll = 1
+            noBlur = 1
+            wrap = <ul class="fourthSubMenu dropdown-menu">|</ul>
+            target = _top
+            NO {
+                stdWrap.htmlSpecialChars = 1
+                wrapItemAndSub = <li>|</li>
+            }
+            ACT < .NO
+            ACT = 1
+            ACT {
+                wrapItemAndSub = <li class="active">|</li>
+            }
+        }    
+    }
+}
+
+lib.main_menu = COA
+lib.main_menu {
+    #10 < plugin.tx_indexedsearch
+    #10 {
+    #  show {
+    #    rules = 0
+    #    advancedSearchLink = 0
+    #  }
+    #  templateFile = fileadmin/templates/{$domainfile}/ext/indexed_search/header/indexed_search.tmpl
+    #  search {
+    #    targetPid >
+    #    targetPid = 10
+    # }
+    # settings.blind.results = 1
+    # resultlist_stdWrap >
+    #}
+    20 = HMENU
+    20 {
+        entryLevel = 0
+        1 = TMENU
+        1 {
+            
+            expAll = 1
+            noBlur = 1
+            wrap = <ul class="navbar-nav mr-auto">|</ul>
+            target = _top
+            NO {
+                stdWrap.htmlSpecialChars = 1
+                wrapItemAndSub =<li class="nav-item">|</li>
+                stdWrap.wrap = <i class="far fa-home"></i><span style="display:none;">|</span>|*|||*|||*||
+            }
+            ACT < .NO
+            ACT = 1
+            ACT {
+                wrapItemAndSub = <li class="nav-item active">|</li>
+            }
+            
+            IFSUB = 1
+            IFSUB {
+                wrapItemAndSub = <li>|</li>
+                ATagParams = class="dropdown-toggle" data-toggle="dropdown"
+            }
+      
+            CURIFSUB < .IFSUB
+            CURIFSUB {
+                wrapItemAndSub = <li class="active">|</li>
+                ATagParams = class="dropdown-toggle" data-toggle="dropdown"
+            }
+            
+            ACTIFSUB < .CURIFSUB
+        }
+      2 = TMENU
+      2{
+        expAll = 1
+        wrap = <div class="dropdown-menu"><div class="container"><div class="row"><div class="col-md-12"><ul>|</ul></div></div></div></div>
+            target = _top
+            NO {
+                stdWrap.htmlSpecialChars = 1
+                wrapItemAndSub = <li>|</li>
+            }        
+            ACT < .NO
+            ACT = 1
+            ACT {
+                wrapItemAndSub = <li class="active">|</li>
+            }
+      }
+      3 = TMENU
+      3{
+            expAll = 1
+            noBlur = 1        
+            wrap = <ul class="fourthDropSubMenu">|</ul>
+            target = _top        
+            NO {
+                stdWrap.htmlSpecialChars = 1
+                wrapItemAndSub = <li>|</li>
+            }        
+            ACT < .NO
+            ACT = 1
+            ACT {
+                wrapItemAndSub = <li class="active">|</li>
+            }
+      }      
+    }
+}

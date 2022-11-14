@@ -1,0 +1,477 @@
+######################
+#### DEPENDENCIES ####
+######################
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:fluid_styled_content/Configuration/TypoScript/setup.typoscript">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:wng_site/Configuration/TypoScript/seo.typoscript">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:wng_site/Configuration/TypoScript/Setup/config/gridelements.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:wng_site/Configuration/TypoScript/gridelements.typoscript">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:wng_site/Configuration/TypoScript/indexed_search.typoscript">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:wng_site/Configuration/TypoScript/news.typoscript">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:wng_site/Configuration/TypoScript/powermail.typoscript">
+
+################
+#### HELPER ####
+################
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:wng_site/Configuration/TypoScript/Helper/DynamicContent.typoscript">
+
+
+
+##############
+#### PAGE ####
+##############
+page = PAGE
+page {
+    typeNum = 0
+    shortcutIcon = EXT:wng_site/Resources/Public/Icons/favicon.ico
+
+    10 = FLUIDTEMPLATE
+    10 {
+        # Template names will be generated automatically by converting the applied
+        # backend_layout, there is no explicit mapping necessary anymore.
+        #
+        # BackendLayout Key
+        # subnavigation_right_2_columns -> SubnavigationRight2Columns.html
+        #
+        # Backend Record
+        # uid: 1 -> 1.html
+        #
+        # Database Entry
+        # value: -1 -> None.html
+        # value: pagets__subnavigation_right_2_columns -> SubnavigationRight2Columns.html
+        templateName = TEXT
+        templateName {
+            cObject = TEXT
+            cObject {
+                data = pagelayout
+                
+                required = 1
+                case = uppercamelcase
+                split {
+                    token = pagets__
+                    cObjNum = 1
+                    1.current = 1
+                }
+            }
+            ifEmpty = Default
+        }
+        templateRootPaths {
+            0 = EXT:wng_site/Resources/Private/Templates/Page/
+            1 = {$page.fluidtemplate.templateRootPath}
+        }
+        partialRootPaths {
+            0 = EXT:wng_site/Resources/Private/Partials/
+            #Page/
+            1 = {$page.fluidtemplate.partialRootPath}
+        }
+        layoutRootPaths {
+            0 = EXT:wng_site/Resources/Private/Layouts/
+            #Page/
+            1 = {$page.fluidtemplate.layoutRootPath}
+        }
+      #  dataProcessing {
+      #      10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+      #          references.fieldName = media
+      ##      10 {
+      #      }
+      #      20 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+      #      20 {
+      #          levels = 2
+      #          includeSpacer = 1
+      #          as = mainnavigation
+      #      }
+      #  }
+        variables {
+            content_main < styles.content.get
+            content_main.select.where = colPos = 0
+            
+            content_right < styles.content.get
+            content_right.select.where = colPos = 1
+        
+            content_left < styles.content.get
+            content_left.select.where = colPos = 2   
+            
+            content_img < styles.content.get
+            content_img.select.where = colPos = 3
+        }
+        file.stdWrap.cObject = CASE
+        file.stdWrap.cObject {
+            key.data = levelfield:-1, backend_layout_next_level, slide
+            key.override.field = backend_layout
+    
+            default = TEXT
+            default.value = EXT:wng_site/Resources/Private/Templates/Page/TemplateWithSubmenu.html
+    
+            pagets__template_home = TEXT
+            pagets__template_home.value = EXT:wng_site/Resources/Private/Templates/Page/TemplateHome.html
+            
+            #pagets__template_with_submenu = TEXT
+            #pagets__template_with_submenu.value = EXT:wng_site/Resources/Private/Templates/Page/TemplateWithSubmenu.html
+        }        
+    }
+
+    meta {
+        viewport = {$page.meta.viewport}
+        robots = {$page.meta.robots}
+        apple-mobile-web-app-capable = {$page.meta.apple-mobile-web-app-capable}
+        description = {$meta.description}
+        description {
+            override.field = description
+        }
+        author = {$page.meta.author}
+        author {
+            override.field = author
+        }
+        keywords = {$meta.keywords}
+        keywords {
+            override.field = keywords
+        }
+        X-UA-Compatible = {$page.meta.compatible}
+        X-UA-Compatible {
+            attribute = http-equiv
+        }
+
+        # OpenGraph Tags
+        og:title {
+            attribute = property
+            field = title
+        }
+        og:site_name {
+            attribute = property
+            data = TSFE:tmpl|setup|sitetitle
+        }
+        og:description = {$page.meta.description}
+        og:description {
+            attribute = property
+            field = description
+        }
+        og:image {
+            attribute = property
+            stdWrap.cObject = FILES
+            stdWrap.cObject {
+                references {
+                    data = levelfield:-1, media, slide
+                }
+                maxItems = 1
+                renderObj = COA
+                renderObj {
+                    10 = IMG_RESOURCE
+                    10 {
+                        file {
+                            import.data = file:current:uid
+                            treatIdAsReference = 1
+                            width = 1280c
+                            height = 720c
+                        }
+                        stdWrap {
+                            typolink {
+                                parameter.data = TSFE:lastImgResourceInfo|3
+                                returnLast = url
+                                forceAbsoluteUrl = 1
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+ #   includeCSSLibs {
+
+ #   }
+
+    includeCSS {
+        file1scss = EXT:wng_site/Resources/Public/Scss/bootstrap/bootstrap.scss
+        file3scss = EXT:wng_site/Resources/Public/Scss/slick-theme.scss
+        file4scss = EXT:wng_site/Resources/Public/Scss/slick.scss
+        file5scss = EXT:wng_site/Resources/Public/Scss/print.scss
+        file6scss = EXT:wng_site/Resources/Public/Scss/lightgallery.scss
+        file7scss = EXT:wng_site/Resources/Public/Scss/standardisation.scss
+        file8scss = EXT:wng_site/Resources/Public/Scss/main.scss
+    }
+
+    includeJSLibs {
+
+    }
+
+    includeJS {
+        file1 = EXT:wng_site/Resources/Public/JavaScript/Dist/jquery-3.4.1.min.js
+    }
+
+    includeJSFooterlibs {
+
+    }
+
+    includeJSFooter {
+        file2 = EXT:wng_site/Resources/Public/JavaScript/Dist/modernizr-3.3.1-respond-1.4.2.min.js      
+        file3 = EXT:wng_site/Resources/Public/JavaScript/Dist/bootstrap.min.js
+        file4 = EXT:wng_site/Resources/Public/JavaScript/Dist/slick.min.js
+        file5 = EXT:wng_site/Resources/Public/JavaScript/Dist/lightgallery-all.min.js
+        file6 = EXT:wng_site/Resources/Public/JavaScript/Src/main.js   
+    }
+}
+
+page.headerData.996 = TEXT
+page.headerData.996.value = <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+
+
+################
+#### CONFIG ####
+################
+config {
+  baseURL = http://{$domain}/
+      absRefPrefix = auto
+    no_cache = {$config.no_cache}
+  renderCharset = utf-8
+  metaCharset = utf-8
+  doctype = html5
+  xmlprologue = none
+  doctypeSwitch = 0
+  enableContentLengthHeader = 1
+  removeDefaultJS = {$config.removeDefaultJS}
+  inlineStyle2TempFile = 1
+    admPanel = {$config.admPanel}
+    debug = 0
+    cache_period = 86400
+    sendCacheHeaders = {$config.sendCacheHeaders}  
+  disablePrefixComment = 1
+  headerComment (
+  Copyright 2019 WNG SA, all rights reserved
+
+  WNG SA - Passage St-François 9 - CH-1003 Lausanne
+  Tel +41 21 320 11 11 - Fax +41 21 320 11 10
+  http://www.wng.ch/ - info[at]wng[dot]ch
+  )
+
+  xhtml_cleaning = all
+  noPageTitle = 2
+  insertDmailerBoundaries = 0
+
+  # Gestion des images
+  meaningfulTempFilePrefix = 1
+  noScaleUp = 1
+
+  # Gestion des liens
+  linkVars = L
+  uniqueLinkVars = 1
+  pageTitleFirst = 1
+  prefixLocalAnchors = {$config.prefixLocalAnchors}
+  intTarget = _top
+  extTarget = _blank
+  spamProtectEmailAddresses = 1
+  spamProtectEmailAddresses_atSubst = (at)
+
+  # Réecriture d'URL
+  simulateStaticDocuments = 0
+  absRefPrefix = http://{$domain}/
+  
+  # Attributs de la balise HTML
+  htmlTag_langKey = fr-FR
+  
+    index_enable = 1
+    index_externals = 1
+    index_metatags = 1
+
+    // Disable Image Upscaling
+    noScaleUp = 1
+
+    // Compression and Concatenation of CSS and JS Files
+    compressJs = 0
+    compressCss = 0
+    concatenateJs = 0
+    concatenateCss = 0
+
+}
+
+tt_content.stdWrap.innerWrap.cObject = CASE
+tt_content.stdWrap.innerWrap.cObject {
+  key.field = layout
+
+  1 = TEXT
+  1.value = <div class="box-color bg-light-grey">|</div>
+  2 = TEXT
+  2.value = <div class="box-color bg-green">|</div>
+  3 = TEXT
+  3.value = <div class="box-color bg-dark-grey">|</div>
+  4 = TEXT
+  4.value = <div class="hr-dotted-light-grey">|</div>
+  5 = TEXT
+  5.value = <div class="hr-light-grey">|</div>
+  6 = TEXT
+  6.value = <div class="hr-dotted-light-blue">|</div>
+  7 = TEXT
+  7.value = <div class="hr-light-blue">|</div>
+  8 = TEXT
+  8.value = <div class="grey-background">|</div>
+}
+
+######################
+####   FRONTEND   ####
+######################
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:wng_site/Configuration/TypoScript/Setup/Frontend/breadcrumb.typoscript">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:wng_site/Configuration/TypoScript/Setup/Frontend/footer.typoscript">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:wng_site/Configuration/TypoScript/Setup/Frontend/menu.typoscript">
+
+######################
+####   Ext   ####
+######################
+
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:wng_site/Configuration/TypoScript/Setup/config/languages.ts">
+
+
+######################
+####   Lib   ####
+######################
+lib.imageurl = COA
+lib.imageurl {
+    10 = CONTENT
+    10 {
+        table = sys_file
+        select {
+            pidInList = root,-1
+            join = sys_file_reference ON sys_file.uid = sys_file_reference.uid_local
+            where.field = recordUid
+            where.wrap = (sys_file_reference.deleted = 0 AND sys_file_reference.tablenames LIKE 'sys_category' AND sys_file_reference.fieldname LIKE 'images' AND sys_file_reference.uid_foreign = |)
+            selectFields = sys_file.identifier
+        }
+
+
+        renderObj = TEXT
+        renderObj.field = identifier
+        renderObj.wrap = fileadmin|
+        stdWrap.ifEmpty =
+    }
+}
+
+lib.category = COA
+lib.category {
+    wrap= <div class="filter">|</div>
+    5 = CONTENT
+    5 {
+        table = sys_category
+        select {
+            pidInList = 70
+            join = sys_category_record_mm ON sys_category_record_mm.uid_local = sys_category.uid
+            where.field = recordUid
+            where.wrap = (sys_category.uid = |)
+            groupBy = sys_category.title
+            orderBy = sys_category.title
+            selectFields = sys_category.uid
+        }
+
+        renderObj = TEXT
+        renderObj.field = uid
+        renderObj.wrap = <label class="conteneur" for="|">
+        stdWrap.ifEmpty =
+    }
+    7 = CONTENT
+    7 {
+        table = sys_category
+        select {
+            pidInList = 70
+            join = sys_category_record_mm ON sys_category_record_mm.uid_local = sys_category.uid
+            where.field = recordUid
+            where.wrap = (sys_category.uid = |)
+            groupBy = sys_category.title
+            orderBy = sys_category.title
+            selectFields = sys_category.uid
+        }
+
+        renderObj = TEXT
+        renderObj.field = uid
+        renderObj.wrap = <input type="checkbox" id="|"></input><span class="checkmark"></span>
+        stdWrap.ifEmpty =
+    }
+    10 = CONTENT
+    10 {
+        table = sys_file
+        select {
+            pidInList = root,-1
+            join = sys_file_reference ON sys_file.uid = sys_file_reference.uid_local
+            where.field = recordUid
+            where.wrap = (sys_file_reference.deleted = 0 AND sys_file_reference.tablenames LIKE 'sys_category' AND sys_file_reference.fieldname LIKE 'images' AND sys_file_reference.uid_foreign = |)
+            selectFields = sys_file.identifier
+        }
+
+
+        renderObj = TEXT
+        renderObj.field = identifier
+        renderObj.wrap = <img src="fileadmin|" height="26px" width="26px" />
+        stdWrap.ifEmpty =
+    }
+    20 = CONTENT
+    20 {
+        table = sys_category
+        select {
+            pidInList = 70
+            join = sys_category_record_mm ON sys_category_record_mm.uid_local = sys_category.uid
+            where.field = recordUid
+            where.wrap = (sys_category.uid = |)
+            groupBy = sys_category.title
+            orderBy = sys_category.title
+            selectFields = sys_category.title
+        }
+
+        renderObj = TEXT
+        renderObj.field = title
+        renderObj.wrap = |</label>
+        stdWrap.ifEmpty =
+    }
+}
+
+
+lib.category2 = COA
+lib.category2 {
+    10 = CONTENT
+    10 {
+        table = sys_category
+        wrap = <div class="filters">|</div>
+        select {
+            pidInList = 70
+            selectFields = sys_category.uid,sys_category.title,sys_category.parent
+            where.field = catuid
+            where.wrap = sys_category.parent=|
+        }
+
+        renderObj=COA
+        renderObj {
+            1 = TEXT
+            1{
+                field = uid
+                wrap = <div class="filter"><label class="conteneur" for="|">
+            }
+
+            2 = TEXT
+            2{
+                field = uid
+                wrap = <input type="checkbox" id="|"/><span class="checkmark"></span>
+            }
+
+            3 = CONTENT
+            3{
+                table = sys_file
+                wrap = |
+                select {
+                    pidInList = root,-1
+                    join = sys_file_reference ON sys_file.uid = sys_file_reference.uid_local
+                    where.field = uid
+                    where.wrap = (sys_file_reference.deleted = 0 AND sys_file_reference.tablenames LIKE 'sys_category' AND sys_file_reference.fieldname LIKE 'images' AND sys_file_reference.uid_foreign = |)
+                    selectFields = sys_file.identifier
+                }
+                renderObj=COA
+                renderObj {
+                    1=TEXT
+                    1.field = identifier
+                    1.wrap = <img src="fileadmin|" height="26px" width="26px" />
+                }
+            }
+
+            4 = TEXT
+            4{
+                field = title
+                wrap = |
+            }
+            
+            wrap = |</label></div>
+        }
+    }
+}

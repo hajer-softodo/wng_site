@@ -1,0 +1,67 @@
+plugin.tx_news {
+  view {
+    templateRootPaths.0 = EXT:news/Resources/Private/News/Templates/
+    partialRootPaths.0 = EXT:news/Resources/Private/News/Partials/
+    layoutRootPaths.0 = EXT:news/Resources/Private/News/Layouts/
+
+    templateRootPaths.1 = EXT:wng_site/Resources/Private/News/Templates/
+    partialRootPaths.1 = EXT:wng_site/Resources/Private/News/Partials/
+    layoutRootPaths.1 = EXT:wng_site/Resources/Private/News/Layouts/
+
+  }
+
+ 
+  # Configuration générale
+  settings {
+  
+    # Page de détail par défaut
+    defaultDetailPid = 12
+    
+    # Dossier des news
+    startingpoint = 15
+    
+    # Page de détails des news
+    detailPid = 12
+    
+    # Page de liste des news
+    listPid = 5
+    
+    # Page de retour depuis un détail
+    backPid = 5
+  }
+  
+  persistence.storagePid = 15
+  
+}
+
+#Paginate setup fir our list.html
+plugin.tx_news {
+  settings.list.media.image.maxWidth = 310
+  settings.list.media.image.maxHeight = 310
+  settings.detail.media.image.maxWidth = 600
+  settings.detail.showSocialShareButtons = 0
+
+  settings.list.paginate {
+      #Do not set the "max records displayed" in the flexform of the plugin, the pagination will disappears
+      itemsPerPage = 3
+      insertAbove = false
+      insertBelow = TRUE
+      lessPages = TRUE
+      forcedNumberOfLinks = 5
+      pagesBefore = 2
+      pagesAfter = 2
+  }
+}
+plugin.tx_news {
+  _LOCAL_LANG {
+    default {
+      post-the = Post the
+      more-link-events = <i class="fa fa-angle-double-right"></i>
+    }
+    fr {
+      more-link = Plus d'infos
+      post-the = Posté le
+      more-link-events = <i class="fa fa-angle-double-right"></i>
+    }
+  }
+}

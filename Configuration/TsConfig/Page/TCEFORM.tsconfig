@@ -1,0 +1,19 @@
+#
+# TCEFORM
+#
+TCEFORM.tt_content {
+    layout {
+        altLabels {
+            1 = Fond gris clair
+            2 = Cadre bleu
+            3 = Fond bleu
+        }
+    }
+ 
+ }
+
+
+TCEFORM.tt_content.layout.addItems.4 = Séparation gris clair avec pointillé
+TCEFORM.tt_content.layout.addItems.5 = Séparation gris clair
+TCEFORM.tt_content.layout.addItems.6 = Séparation bleu clair avec pointillé
+TCEFORM.tt_content.layout.addItems.7 = Séparation bleu clair

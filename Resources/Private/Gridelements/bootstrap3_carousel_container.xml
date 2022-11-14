@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3DataStructure>
+    <meta type="array">
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <general>
+            <ROOT type="array">
+                <TCEforms>
+                    <sheetTitle>Paramètres</sheetTitle>
+                </TCEforms>
+                <el type="array">
+                    <auto>
+                        <TCEforms type="array">
+                            <config type="array">
+                                <type>check</type>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">Défilement automatique</numIndex>
+                                        <numIndex index="1">1</numIndex>
+                                    </numIndex>
+                                </items>
+                                <default>1</default>
+                            </config>
+                        </TCEforms>
+                    </auto>
+                    <interval type="array">
+                        <TCEforms type="array">
+                            <label>Vitesse (en secondes)</label>
+                            <config>
+                                <type>input</type>
+                                <size>6</size>
+                                <max>4</max>
+                                <eval>trim,number</eval>
+                                <default>6</default>
+                            </config>
+                        </TCEforms>
+                    </interval>
+                    <loop>
+                        <TCEforms type="array">
+                            <config type="array">
+                                <type>check</type>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">Boucle sans fin</numIndex>
+                                        <numIndex index="1">1</numIndex>
+                                    </numIndex>
+                                </items>
+                                <default>1</default>
+                            </config>
+                        </TCEforms>
+                    </loop>
+                </el>
+            </ROOT>
+        </general>
+    </sheets>
+</T3DataStructure>

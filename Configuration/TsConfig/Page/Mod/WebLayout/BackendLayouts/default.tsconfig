@@ -1,0 +1,106 @@
+#
+# BACKENDLAYOUT: DEFAULT + sub
+#
+
+mod.web_layout.BackendLayouts {
+  default {
+    title = Template 1 colonne avec sous-menu à gauche
+    icon = EXT:wng_site/Resources/Public/Images/BackendLayouts/default.png
+    config {
+      backend_layout {
+        colCount = 2
+        rowCount = 2
+        rows {
+          1 {
+            columns {
+              1 {
+                name = Image
+                colspan = 2
+                colPos = 3
+              }
+            }
+          }
+          2 {
+            columns {
+              1 {
+                name = Contenu principal
+                colPos = 0
+              }
+              2 {
+                name = Colonne de droite
+                colPos = 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+mod.web_layout.BackendLayouts {
+  template_home {
+    title = Template Home
+    icon = EXT:wng_site/Resources/Public/Images/BackendLayouts/default.png
+    config {
+      backend_layout {
+        colCount = 1
+        rowCount = 2
+        rows {
+          1 {
+            columns {
+              1 {
+                name = Image
+                colPos = 3
+              }
+            }
+          }
+          2 {
+            columns {
+              1 {
+                name = Contenu principal
+                colPos = 0
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#mod.web_layout.BackendLayouts {
+#  template_with_submenu {
+#    title = Template 1 colonne avec sous-menu à gauche
+#    icon = EXT:wng_site/Resources/Public/Images/BackendLayouts/default.png
+#      backend_layout {
+#    config {
+#        colCount = 2
+#        rowCount = 2
+#        rows {
+#          1 {
+#            columns {
+#              1 {
+#                name = Image
+#                colspan = 2
+#                colPos = 3
+#              }
+#            }
+#          }
+#          2 {
+#            columns {
+#              1 {
+#                name = Contenu principal
+#                colPos = 0
+#              }
+#              2 {
+#                name = Colonne de droite
+#                colPos = 1
+#            }
+#              }
+#          }
+#        }
+#      }
+#    }
+#  }
+#}

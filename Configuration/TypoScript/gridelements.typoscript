@@ -1,0 +1,252 @@
+
+# Carousel Item
+# First define the carousel item cObject, we want this in the container
+
+tt_content.gridelements_pi1.20.10.setup.uebb_bootstrap_carousel_item {
+  # item wrap, first item has active flag
+  stdWrap {
+    outerWrap = <div class="item">|</div>
+    outerWrap.override = <div class="item active">|</div>
+    outerWrap.override.if {
+      value = 1
+      equals.data = cObj:parentRecordNumber
+      equals.prioriCalc = 1
+    }
+  }
+
+  columns.0 {
+    renderObj = COA
+    renderObj {
+      5 = FILES
+      5 {
+        references {
+          table = tt_content
+          uid.field = uid
+          fieldName = assets
+        }
+
+        renderObj = IMAGE
+        renderObj {
+          file.import.data = file:current:publicUrl
+          titleText.data = file:current:title
+          altText.data = file:current:alternative
+          stdWrap.typolink.parameter.data = file:current:link
+        }
+      }
+    }
+  }
+
+  columns.1 {
+      wrap = <div class="container"><div class="slick-caption container">|</div></div>
+
+      renderObj = COA
+      renderObj {
+        # Header
+        10 = TEXT
+        10 {
+          field = header
+          wrap = <h2>|</h2>
+          if.isTrue.field = header
+        }
+
+        20 = TEXT
+        20 {
+          field = bodytext
+          parseFunc < lib.parseFunc_RTE
+        }
+      }
+    }
+  }
+
+
+
+# We need this to calculate the interval (s -> ms)
+lib.math = TEXT
+lib.math {
+  current = 1
+  prioriCalc = 1
+}
+
+# Carousel Container
+tt_content.gridelements_pi1.20.10.setup.uebb_bootstrap_carousel_container {
+  cObject = FLUIDTEMPLATE
+  cObject {
+    file = EXT:wng_site/Resources/Private/Gridelements/bootstrap3_carousel_container_template.html
+  }
+  columns.0 {
+    renderObj < tt_content.gridelements_pi1
+  }
+}
+# Carousel END
+
+# 2 cols
+tt_content.gridelements_pi1.20.10.setup{
+  2cols < lib.gridelements.defaultGridSetup
+  2cols {
+    columns.1.renderObj = <tt_content
+    columns.1.wrap = <div class="col-sm-6">|</div>
+
+    columns.2.renderObj = <tt_content
+    columns.2.wrap = <div class="col-sm-6">|</div>
+
+    stdWrap.wrap = <div class="row">|</div>
+  }
+}
+# 2 cols END
+
+
+# 2 cols
+tt_content.gridelements_pi1.20.10.setup{
+  2cols2 < lib.gridelements.defaultGridSetup
+  2cols2 {
+    columns.1.renderObj = <tt_content
+    columns.1.wrap = <div class="col-md-8">|</div>
+
+    columns.2.renderObj = <tt_content
+    columns.2.wrap = <div class="col-md-4">|</div>
+
+    stdWrap.wrap = <div class="row">|</div>
+  }
+}
+# 2 cols END
+
+# 3 cols
+tt_content.gridelements_pi1.20.10.setup{
+  3cols < lib.gridelements.defaultGridSetup
+  3cols {
+    columns.1.renderObj = <tt_content
+    columns.1.wrap = <div class="col-sm-4">|</div>
+
+    columns.2.renderObj = <tt_content
+    columns.2.wrap = <div class="col-sm-4">|</div>
+
+    columns.3.renderObj = <tt_content
+    columns.3.wrap = <div class="col-sm-4">|</div>
+
+    stdWrap.wrap = <div class="row">|</div>
+  }
+}
+# 3 cols END
+
+# 4 cols
+tt_content.gridelements_pi1.20.10.setup{
+  4cols < lib.gridelements.defaultGridSetup
+  4cols {
+    columns.1.renderObj = <tt_content
+    columns.1.wrap = <div class="col-md-3 col-sm-6">|</div>
+
+    columns.2.renderObj = <tt_content
+    columns.2.wrap = <div class="col-md-3 col-sm-6">|</div>
+
+    columns.3.renderObj = <tt_content
+    columns.3.wrap = <div class="col-md-3 col-sm-6">|</div>
+
+    columns.4.renderObj = <tt_content
+    columns.4.wrap = <div class="col-md-3 col-sm-6">|</div>
+
+    stdWrap.wrap = <div class="row">|</div>
+  }
+}
+# 4 cols END
+
+# Accordion
+tt_content.gridelements_pi1.20.10.setup{
+ accordion < lib.gridelements.defaultGridSetup
+ accordion {
+   columns.1.renderObj = <tt_content
+   columns.1.dataWrap = <div class="panel-group" id="accordion-{field:_LOCALIZED_UID//field:uid}" role="tablist" aria-multiselectable="true">|</div>
+ }
+}
+# Accordion END
+
+# Accordion element
+tt_content.gridelements_pi1.20.10.setup{
+ accordion_element < lib.gridelements.defaultGridSetup
+ accordion_element {
+   columns.1.renderObj = <tt_content
+   columns.1.wrap = <div class="panel-heading" role="tab" id="heading{field:_LOCALIZED_UID//field:uid}"><div data-toggle="collapse" data-target="#collapse{field:_LOCALIZED_UID//field:uid}" class="collapsed" aria-expanded="true" aria-controls="collapse{field:_LOCALIZED_UID//field:uid}">|</div></div>
+   columns.1.wrap.insertData = 1
+   columns.2.renderObj = <tt_content
+   columns.2.wrap = <div id="collapse{field:_LOCALIZED_UID//field:uid}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{field:_LOCALIZED_UID//field:uid}" data-parent="#accordion-{field:tx_gridelements_container}"><div class="panel-body">|</div></div>
+   columns.2.wrap.insertData = 1
+   stdWrap.wrap = <div class="panel panel-default">|</div>
+ }
+}
+# Accordion element END
+
+# Tab element
+tt_content.gridelements_pi1.20.10.setup.uebb_bootstrap_tabs_tab {
+
+# Add the ID and the Class to the tab container
+preCObject = LOAD_REGISTER
+preCObject {
+ containerId.cObject = COA
+ containerId.cObject {
+  wrap = id="|"
+  10 = TEXT
+  10.wrap = tab-content-|
+  10.field = uid
+ }
+
+ containerClasses.cObject = COA
+ containerClasses.cObject {
+  wrap = class="tab-pane |"
+
+  # fade or empty
+  10 = TEXT
+  10.field = parentgrid_flexform_switch_effect
+  10.noTrimWrap = | | |
+
+  # We want the active flag on the first child
+  20 = TEXT
+  20.value = active in
+  20.noTrimWrap = | | |
+  20.if {
+    value = 1
+    equals.data = cObj:parentRecordNumber
+    equals.prioriCalc = 1
+  }
+ }
+}
+
+outerWrap = <div {register: containerId} {register: containerClasses}>|</div>
+outerWrap.insertData = 1
+
+# Render the children the default way
+columns.0 {
+ renderObj = < tt_content
+}
+}
+
+# Tab Container
+tt_content.gridelements_pi1.20.10.setup.uebb_bootstrap_tabs_container {
+# Render navigation using fluid
+cObject = FLUIDTEMPLATE
+cObject {
+ file = EXT:wng_site/Resources/Private/Gridelements/bootstrap3_tabs_template.html
+}
+
+# Add the renderObj of the tab directly, this prevents the "csc-default"-wrap
+columns.0 {
+ renderObj = < tt_content.gridelements_pi1
+}
+}
+# Tab Container END
+
+# Tab gridelements
+
+TCEFORM.tt_content.tx_gridelements_backend_layout {
+ removeChildrenFromList = 1
+}
+
+# Tab gridelements END
+
+# Container
+tt_content.gridelements_pi1.20.10.setup{
+  container < lib.gridelements.defaultGridSetup
+  container {
+    columns.1.renderObj = <tt_content
+    columns.1.wrap = <div class="container">|</div>
+  }
+}
+# Container END

@@ -1,0 +1,36 @@
+lib.footer_menu = COA
+lib.footer_menu {
+   10 = HMENU
+   10.special = directory
+   10.special.value = 14
+   10 {
+       entryLevel = 0
+       1 = TMENU
+       1 {
+
+           expAll = 1
+           noBlur = 1
+
+           target = _top
+           NO {
+               stdWrap.htmlSpecialChars = 1
+               wrapItemAndSub = <li>|</li>
+           }
+       }
+   }
+   10.wrap = <ul>|
+   20 = TEXT
+   20.value = Gestion des données
+   20.wrap = <li><a href="javascript:tarteaucitron.userInterface.openPanel();">|</a></li></ul>
+}
+
+# recupère FCE footer
+# FR
+lib.field_site_footer = COA
+lib.field_site_footer {
+  10 = RECORDS
+    10 {
+        tables = tt_content
+        source = 2
+    }
+}

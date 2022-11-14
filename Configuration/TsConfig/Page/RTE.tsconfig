@@ -1,0 +1,33 @@
+#############
+#### RTE ####
+#############
+RTE {
+    default {
+        preset = wng_site
+    }
+}
+
+RTE.default {
+	// Buttons to show
+	showButtons = *
+ 
+	// Buttons to hide
+	hideButtons (
+	  strikethrough,user,abbreviation,inserttag,about,showhelp,fontstyle,fontsize,
+	  textcolor,bgcolor,textindicator,insertcharacter,showlanguagemarks,
+	  emoticon,showmicrodata, insertsofthyphen,findreplace,editelement,
+	  pastetoggle
+	)
+ 
+	// Group buttons (Mozilla only)
+	keepButtonGroupTogether = 1
+ 
+	// Hide table operations
+	hideTableOperationsInToolbar = 0
+ 
+	// Show toggle borders item even if table operations are disabled
+	keepToggleBordersInToolbar = 0
+ 
+	// Display status bar
+	showStatusBar = 1
+}

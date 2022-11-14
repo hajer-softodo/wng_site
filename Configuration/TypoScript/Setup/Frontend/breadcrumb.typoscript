@@ -1,0 +1,16 @@
+lib.filArianne = COA
+lib.filArianne {
+  10 = HMENU
+  10 {
+    excludeUidList = 1,2
+    special = rootline
+   special.range = 0|-1
+    1 = TMENU
+    1{
+      NO.linkWrap =  | <i class="fa fa-angle-right"></i>
+      CUR = 1
+      CUR.doNotLinkIt = 1
+      CUR.stdWrap.wrap = <span class="current-breadcrumb">|</span>
+    }
+  }
+}
