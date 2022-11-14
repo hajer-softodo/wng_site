@@ -32,5 +32,5 @@ $EM_CONF[$_EXTKEY] = [
     'author_email' => 'rsp@wng.ch',
     'author_company' => 'WNG SA',
     'version' => '1.0.0',
-    'test' => 'test',
+    'test' => 'tet'
 ];
